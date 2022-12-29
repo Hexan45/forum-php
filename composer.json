@@ -1,0 +1,19 @@
+{
+    "name": "hexan45/forum",
+    "description": "Forum project",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/",
+            "app\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hexan45",
+            "email": "matwinski2@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
