@@ -2,4 +2,4 @@ tailwind.config.js
 vendor/
 node_modules/
 .env
-resources/css/*
+resources/css/
