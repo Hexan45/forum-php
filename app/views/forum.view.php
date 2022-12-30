@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-      <?= out($title) ?>
+      <?php out($title) ?>
     </title>
     
     <link rel="stylesheet" type="text/css" href="./css/main.css" />
@@ -16,12 +16,12 @@
             <img src="./images/forum-logo.png" alt="" class="w-36" />
         </div>
         <div class="hidden md:flex flex-row gap-x-8 text-base font-normal">
-            <a href="" class="hover:text-rose-400">Portal</a>
-            <a href="" class="hover:text-rose-400">Użytkownicy</a>
-            <a href="" class="hover:text-rose-400">Najnowsze tematy</a>
-            <a href="" class="hover:text-rose-400">Szukaj</a>
+            <a href="<?php out(route('/')); ?>" class="hover:text-rose-400">Portal</a>
+            <a href="<?php out(route('/users')); ?>" class="hover:text-rose-400">Użytkownicy</a>
+            <a href="<?php out(route('/newest-topics')); ?>" class="hover:text-rose-400">Najnowsze tematy</a>
+            <a href="<?php out(route('/search')); ?>" class="hover:text-rose-400">Szukaj</a>
         </div>
-        <a href="" class="hidden md:block text-white px-10 pt-2 pb-3 bg-rose-500 rounded-full hover:bg-rose-600 hover:pb-2 ease-out duration-100">
+        <a href="<?php out(route('/login')); ?>" class="hidden md:block text-white px-10 pt-2 pb-3 bg-rose-500 rounded-full hover:bg-rose-600 hover:pb-2 ease-out duration-100">
             Zaloguj się
         </a>
         <div class="md:hidden">
