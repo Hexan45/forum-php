@@ -4,14 +4,10 @@
     namespace app\database;
 
     class database {
-        private databaseInterface $databaseInstance;
+        public databaseInterface $db;
 
         public function __construct(databaseInterface $databaseModule) {
-            $this->databaseInstance = $databaseModule;
-            $this->databaseInstance->dbConnection();
-        }
-
-        public function __destruct() {
-
+            $this->db = $databaseModule;
+            $this->db->dbConnection();
         }
     }

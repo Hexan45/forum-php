@@ -4,5 +4,6 @@
     namespace app\database;
 
     interface databaseInterface {
-        public function dbConnection() : object|bool;
+        public function dbConnection() : bool;
+        public function select(string $table, ?array $where = null) : void;
     }

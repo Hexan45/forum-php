@@ -4,13 +4,18 @@
     namespace app\database;
 
     use app\database\databaseInterface;
+    use app\database\builder\queryBuilder;
 
     class mysqli implements databaseInterface {
         private string $host = '';
         private string $username = '';
         private string $password = '';
         private string $databaseName = '';
+
         private \mysqli $databaseConnection;
+        private \mysqli_stmt $queryStatement;
+
+        use queryBuilder;
 
         public function __construct() {
             $this->host = $_SERVER['DATABASE_HOST'];
@@ -32,5 +37,4 @@
             return true;
         }
 
-        
     }

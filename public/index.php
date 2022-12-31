@@ -16,6 +16,8 @@
     $env();
 
     $database = new database(new mysqli());
-    var_dump($database);
+    $database->db->select("post", ['test' => 'siema', 'echo' => 'test']);
+    print_r($database->db->getValues());
+    echo $database->db;
 
     $router->resolve();
