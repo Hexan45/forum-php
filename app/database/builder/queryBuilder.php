@@ -17,18 +17,10 @@
 
             $query .= " WHERE";
             $query .= array_reduce(array_keys($where), function($previous, $current) {
-                return sprintf("%s %s = ?", $previous, $current);
+                return sprintf("%s %s=?", $previous, $current);
             });
 
-            $this->queryValues = $where;
+            $this->queryValues = array_values($where) ?: [];
             $this->query = $query;
-        }
-
-        public function getValues() : array {
-            return $this->queryValues ?? [];
-        }
-
-        public function __toString() : string {
-            return $this->query;
         }
     }

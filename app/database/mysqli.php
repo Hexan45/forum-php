@@ -13,7 +13,17 @@
         private string $databaseName = '';
 
         private \mysqli $databaseConnection;
-        private \mysqli_stmt $queryStatement;
+        private \mysqli_stmt|false $databaseStatement;
+        private \mysqli_result|false $databaseQueryResult;
+
+        const PREPARE_TYPES = [
+            'integer' => 'i',
+            'double' => 'd',
+            'string' => 's'
+        ];
+
+        public const OBJECT_RESULT = 'fetch_object';
+        public const ASSOC_RESULT = 'fetch_assoc';
 
         use queryBuilder;
 
@@ -35,6 +45,34 @@
             }
             $this->databaseConnection = $connection;
             return true;
+        }
+
+        private function getValuesTypes(array $vars) : string {
+            $result = '';
+            foreach($vars as $value) {
+                $result .= self::PREPARE_TYPES[gettype($value)];
+            }
+            return $result;
+        }
+
+        public function execute() : bool {
+            if( $this->databaseStatement = $this->databaseConnection->prepare($this->query) ) {
+
+                $valuesTypes = $this->getValuesTypes($this->queryValues);
+                $this->databaseStatement->bind_param($valuesTypes, ...$this->queryValues);
+                $this->databaseStatement->execute();
+                $this->databaseQueryResult = $this->databaseStatement->get_result();
+
+                return true;
+
+            }
+            return false;
+        }
+
+        public function getResult(string $resultType) : array|object {
+            if($this->databaseQueryResult) {
+                return $this->databaseQueryResult->{$resultType}();
+            }
         }
 
     }

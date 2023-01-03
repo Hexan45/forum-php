@@ -16,8 +16,8 @@
     $env();
 
     $database = new database(new mysqli());
-    $database->db->select("post", ['test' => 'siema', 'echo' => 'test']);
-    print_r($database->db->getValues());
-    echo $database->db;
+    $database->db->select("post", ['title' => 'sda']);
+    $database->db->execute();
+    print_r($database->db->getResult($database->db::ASSOC_RESULT));
 
     $router->resolve();
