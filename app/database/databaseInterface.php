@@ -5,6 +5,5 @@
 
     interface databaseInterface {
         public function dbConnection() : bool;
-        public function select(string $table, ?array $where = null) : void;
-        public function execute() : bool;
+        public function execute(string $query) : bool;
     }

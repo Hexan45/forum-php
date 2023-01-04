@@ -25,8 +25,6 @@
         public const OBJECT_RESULT = 'fetch_object';
         public const ASSOC_RESULT = 'fetch_assoc';
 
-        use queryBuilder;
-
         public function __construct() {
             $this->host = $_SERVER['DATABASE_HOST'];
             $this->username = $_SERVER['DATABASE_USERNAME'];
@@ -55,11 +53,11 @@
             return $result;
         }
 
-        public function execute() : bool {
-            if( $this->databaseStatement = $this->databaseConnection->prepare($this->query) ) {
+        public function execute(string $query) : bool {
+            if( $this->databaseStatement = $this->databaseConnection->prepare() ) {
 
-                $valuesTypes = $this->getValuesTypes($this->queryValues);
-                $this->databaseStatement->bind_param($valuesTypes, ...$this->queryValues);
+                $valuesTypes = $this->getValuesTypes();
+                $this->databaseStatement->bind_param($valuesTypes, );
                 $this->databaseStatement->execute();
                 $this->databaseQueryResult = $this->databaseStatement->get_result();
 

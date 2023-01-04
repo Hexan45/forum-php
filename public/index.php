@@ -9,6 +9,7 @@
 
     use app\database\database;
     use app\database\mysqli;
+    use app\database\builder\queryBuilder;
 
     $router = new router();
 
@@ -16,8 +17,11 @@
     $env();
 
     $database = new database(new mysqli());
-    $database->db->select("post", ['title' => 'sda']);
-    $database->db->execute();
-    print_r($database->db->getResult($database->db::ASSOC_RESULT));
+    $query = (new queryBuilder)
+        ->select('post', 'id')
+        ->where(['id' => 1, 'title' => 'siema'], 'AND')
+        ->limit(5);
+    echo $query->getQuery();
+    //$database->db->execute();
 
     $router->resolve();
